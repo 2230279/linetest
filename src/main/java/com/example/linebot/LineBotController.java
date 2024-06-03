@@ -27,8 +27,8 @@ public class LineBotController {
     @Value("${line.bot.channel-token}")
     private String channelToken;
 
-    @PostMapping("/webhook")
-    public void handleWebhook(@RequestBody FollowEvent followEvent) {
+    @PostMapping("/webhook/follow")
+    public void handleFollowEvent(@RequestBody FollowEvent followEvent) {
         String replyToken = followEvent.getReplyToken();
 
         // 發送歡迎消息
@@ -42,7 +42,7 @@ public class LineBotController {
         }
     }
 
-    @PostMapping("/webhook")
+    @PostMapping("/webhook/message")
     public void handleMessageEvent(@RequestBody MessageEvent<TextMessageContent> event) {
         String replyToken = event.getReplyToken();
         String userMessage = event.getMessage().getText();
